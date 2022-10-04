@@ -86,6 +86,7 @@ class Pokemon:
 
             # Check to see if Pokemon fainted
             if Pokemon2.health <= 0:
+                Pokemon2.health = 0
                 delay_print("\n..." + Pokemon2.name + " s'est évanoui.")
                 break
 
@@ -109,6 +110,7 @@ class Pokemon:
 
             # Check to see if Pokemon fainted
             if self.health <= 0:
+                self.health = 0
                 delay_print("\n..." + self.name + " s'est évanoui.")
                 break
 
@@ -134,6 +136,17 @@ def choixPokemon():
                     pokemonsJoueur.append(pokedex[k])
         i+=1
 
+def choixPokemonsOrdi():
+    nbRange = 3
+    i = 0
+    while i < nbRange:
+        nb = np.random.choice(len(pokedex))
+        if pokedex[nb] not in pokemonsOrdi:
+            pokemonsOrdi.append(pokedex[nb])
+        else:
+            nbRange += 1
+        i += 1
+
     print("Vos pokemons: " + str(pokemonsJoueur))
 
 # Grass type
@@ -153,6 +166,3 @@ pokemon7 = Pokemon("Moustillon", "Water", ["Tackle", "Water Gun", "Retaliate", "
 pokemon8 = Pokemon("Tiplouf", "Water", ["Whirlpool", "Pound", "Water Gun", "Fury Attack"], 53, 51, 53, 40)
 
 pokedex = [pokemon1, pokemon2, pokemon3, pokemon4, pokemon5, pokemon6, pokemon7, pokemon8]
-
-pokemonsJoueur = []
-pokemonsOrdi = []
