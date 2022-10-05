@@ -42,26 +42,29 @@ class Pokemon:
             if self.type == k:
                 # Both are same type
                 if Pokemon2.type == k:
-                    string_1_attack = "\nCe n'est pas très efficace..."
-                    string_2_attack = "\nCe n'est pas très efficace..."
+                    strAtk1 = "\nCe n'est pas très efficace..."
+                    strAtk2 = "\nCe n'est pas très efficace..."
 
                 # Pokemon2 is STRONG
-                if Pokemon2.type == version[(i + 1) % 4]:
+                elif Pokemon2.type == version[(i + 1) % 4]:
                     Pokemon2.attack *= 2
                     Pokemon2.defense *= 2
                     self.attack /= 2
                     self.defense /= 2
-                    string_1_attack = "\nCe n'est pas très efficace..."
-                    string_2_attack = "\nC'est super efficace!"
+                    strAtk1 = "\nCe n'est pas très efficace..."
+                    strAtk2 = "\nC'est super efficace!"
 
                 # Pokemon2 is WEAK
-                if Pokemon2.type == version[(i + 2) % 4]:
+                elif Pokemon2.type == version[(i + 2) % 4]:
                     self.attack *= 2
                     self.defense *= 2
                     Pokemon2.attack /= 2
                     Pokemon2.defense /= 2
-                    string_1_attack = "\nC'est super efficace!"
-                    string_2_attack = "\nCe n'est pas très efficace..."
+                    strAtk1 = "\nC'est super efficace!"
+                    strAtk2 = "\nCe n'est pas très efficace..."
+
+                else:
+                    pass
 
         while (self.health > 0) and (Pokemon2.health > 0):
             # Print the health of each pokemon
@@ -71,13 +74,13 @@ class Pokemon:
             print(f"Go {self.name}!")
             for i, x in enumerate(self.moves):
                 print(f"{i + 1}.", x)
-            choice = int(input('Pick a move: '))
-            delay_print(f"\n{self.name} used {self.moves[choice - 1]}!")
+            choice = int(input('Choisir un attaque: '))
+            delay_print(f"\n{self.name} lance {self.moves[choice - 1]}!")
             time.sleep(1)
-            delay_print(string_1_attack)
+            delay_print(strAtk1)
 
             # Determine damage
-            Pokemon2.health -= (self.attack*0.15)//1
+            Pokemon2.health -= int(self.attack*0.25)
             time.sleep(1)
 
             print(f"\n{self.name}\t\t♥ {self.health}")
@@ -92,13 +95,13 @@ class Pokemon:
 
             # Pokemon2s turn
 
-            print(f"Go {Pokemon2.name}!")
+            print(f"En avant {Pokemon2.name}!")
             for i, x in enumerate(Pokemon2.moves):
                 print(f"{i + 1}.", x)
             index = int(input('Pick a move: '))
-            delay_print(f"\n{Pokemon2.name} used {Pokemon2.moves[index - 1]}!")
+            delay_print(f"\n{Pokemon2.name} lance {Pokemon2.moves[index - 1]}!")
             time.sleep(1)
-            delay_print(string_2_attack)
+            delay_print(strAtk2)
 
             # Determine damage
             self.health -= (self.attack*0.15)//1
@@ -113,6 +116,14 @@ class Pokemon:
                 self.health = 0
                 delay_print("\n..." + self.name + " s'est évanoui.")
                 break
+                
+class Attaques:
+    def __init__(self, power):
+        pass
+
+class Objets:
+    def __init__(self, name, description, effet):
+        pass
 
 pokemonsJoueur = []
 pokemonsOrdi = []
